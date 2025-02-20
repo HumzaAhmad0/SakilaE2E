@@ -1,7 +1,9 @@
 Feature: Homepage
+  Background:
+    Given the page "http://localhost:5174/" is loaded
+
 
   Scenario Outline: The user clicks on a film
-    Given the page "http://localhost:5174/" is loaded
     When the user selects the "<card>" card
     Then the URL should be "<redirect-card>"
 
@@ -13,8 +15,7 @@ Feature: Homepage
     |     sublight-3      | http://localhost:5174/film/393  |
     |     sublight-4      | http://localhost:5174/film/574  |
 
-  Scenario Outline:
-    Given the page "http://localhost:5174/" is loaded
+  Scenario Outline: the user clicks on a specific card
     Then the "<card>" should have the title of "<card-title>"
 
     Scenarios:
@@ -27,7 +28,6 @@ Feature: Homepage
 #adding this to test github
 
 #    idk if i need this for each nav link?
-  Scenario:
-    Given the page "http://localhost:5174/" is loaded
+  Scenario: the user uses the navbar
     When the user selects "navbar-films" from the navbar
     Then the URL should be "http://localhost:5174/films"
