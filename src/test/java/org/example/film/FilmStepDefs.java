@@ -1,13 +1,11 @@
 package org.example.film;
 
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.example.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class FilmStepDefs {
 

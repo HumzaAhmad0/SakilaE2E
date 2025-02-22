@@ -1,24 +1,18 @@
 package org.example;
 
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 
-import java.time.Duration;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class GenericStepDefs {
-    protected WebDriver driver;
 
     @After
     public void cleanup(){
@@ -50,7 +44,7 @@ public class GenericStepDefs {
     @Then("the page should contain {string} with the text of {string}")
     public void theSpecificTextShouldBeDisplayed(String card, String title){
         final var driver = DriverManager.getDriver();
-        final WebElement result = driver.findElement(By.cssSelector("h1[data-testid='"+ card +"']"));
+        final WebElement result = driver.findElement(By.cssSelector("[data-testid='"+ card +"']"));
 
         assertEquals(result.getText(), title);
     }
