@@ -1,21 +1,13 @@
 package org.example.home;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.DriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
-
-import java.time.Duration;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class HomeStepDefs {
 
@@ -24,11 +16,7 @@ public class HomeStepDefs {
     public void theCardIsSelected(String card){
         final var driver = DriverManager.getDriver();
 
-        if (card.equals("spotlight-topfilm")){
-            driver.findElement(By.cssSelector("h3[data-testid='"+ card +"']")).click();
-        }else{
-            driver.findElement(By.cssSelector("h4[data-testid='"+ card +"']")).click();
-        }
+        driver.findElement(By.cssSelector("div[data-testid='"+ card +"']")).click();
     }
 
     @When("(the user) selects {string} from the navbar")
@@ -38,18 +26,53 @@ public class HomeStepDefs {
         driver.findElement(By.cssSelector("li[data-testid='"+ link +"']")).click();
     }
 
-
     @Then("the {string} should have the title of {string}")
     public void theTitleShouldBe(String card, String title){
         final var driver = DriverManager.getDriver();
         WebElement test;
 
         if (card.equals("spotlight-topfilm")){
-            test = driver.findElement(By.cssSelector("h3[data-testid='"+ card +"']"));
-        }else{
-            test = driver.findElement(By.cssSelector("h4[data-testid='"+ card +"']"));
+            test = driver.findElement(By.cssSelector("h3[data-testid='spotlight-title-topfilm']"));
+        } else {
+            test = driver.findElement(By.cssSelector("h4[data-testid='sublight-title-" + card.split("-")[1] + "']"));
         }
-        assertEquals(test.getText(), title, "Film title wrong");
+        assertEquals(test.getText(), title, "Film title is wrong");
     }
+
+    @Then("the {string} should have the year {string}")
+    public void theYearShouldBe(String card, String year){
+        final var driver = DriverManager.getDriver();
+        WebElement test;
+
+        if (card.equals("spotlight-topfilm")){
+            test = driver.findElement(By.cssSelector("p[data-testid='spotlight-year-topfilm']"));
+        } else {
+            test = driver.findElement(By.cssSelector("p[data-testid='sublight-year-" + card.split("-")[1] + "']"));
+        }
+        assertEquals(test.getText(), year, "Film year is wrong");
+    }
+
+    @Then("the {string} should have the score {string}")
+    public void theScoreShouldBe(String card, String score){
+        final var driver = DriverManager.getDriver();
+        WebElement test;
+
+        if (card.equals("spotlight-topfilm")){
+            test = driver.findElement(By.cssSelector("div[data-testid='spotlight-score-topfilm']"));
+        } else {
+            test = driver.findElement(By.cssSelector("p[data-testid='sublight-score-" + card.split("-")[1] + "']"));
+        }
+        assertEquals(test.getText(), score, "Film score is wrong");
+    }
+
+    @Then("the {string} should have the description {string}")
+    public void theSpotLightDescShouldBe(String card, String desc){
+        final var driver = DriverManager.getDriver();
+        WebElement result;
+        result = driver.findElement(By.cssSelector("p[data-testid='"+ card +"']"));
+
+        assertEquals(result.getText(), desc, "Film description is wrong");
+    }
+
 
 }
