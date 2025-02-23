@@ -11,6 +11,8 @@ import static org.testng.Assert.*;
 
 public class SearchActorStepDefs {
 
+//    I want to add a feature where it looks at the length of the already existing entry and then backspaces that many times
+//   maybe a for loop for that size?
     @When("the user deletes the value in the {string} field")
     public void theUserDeletesValueInField(String field) {
         final var driver = DriverManager.getDriver();

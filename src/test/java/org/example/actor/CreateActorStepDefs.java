@@ -32,10 +32,10 @@ public class CreateActorStepDefs {
         alert.accept();
     }
 
-    @When("the user enters more than 45 characters in the {string} field")
-    public void the_user_enters_more_than_45_characters_in_the_field(String field) {
+    @When("the user enters more than {int} characters in the {string} field")
+    public void the_user_enters_more_than_X_characters_in_the_field(int length,String field) {
         final var driver = DriverManager.getDriver();
-        String longName = "A".repeat(46);
+        String longName = "A".repeat(length+1);
         WebElement inputField = driver.findElement(By.cssSelector("input[data-testid='" + field + "']"));
         inputField.sendKeys(longName);
     }
