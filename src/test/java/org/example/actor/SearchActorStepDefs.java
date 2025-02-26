@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
+import java.util.Objects;
+
 import static org.testng.Assert.*;
 
 public class SearchActorStepDefs {
@@ -17,8 +19,13 @@ public class SearchActorStepDefs {
     public void theUserDeletesValueInField(String field) {
         final var driver = DriverManager.getDriver();
         WebElement inputField = driver.findElement(By.cssSelector("input[data-testid='" + field + "']"));
+
+        int inputContent = Objects.requireNonNull(inputField.getDomProperty("value")).length();
         inputField.click();
-        inputField.sendKeys(Keys.BACK_SPACE);
+        for (int i = 0; i< inputContent; i++){
+            inputField.sendKeys(Keys.BACK_SPACE);
+        }
+//        inputField.sendKeys(Keys.BACK_SPACE);
 //        while (!inputField.getText().isEmpty()) {
 //            inputField.sendKeys(Keys.BACK_SPACE);
 //        }

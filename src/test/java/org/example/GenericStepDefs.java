@@ -55,8 +55,13 @@ public class GenericStepDefs {
         assertEquals(result.getText(), title);
     }
 
+    @Then("the page should contain input {string} with the text of {string}")
+    public void theSpecificTextShouldBeDisplayedInput(String card, String title){
+        final var driver = DriverManager.getDriver();
+        final WebElement result = driver.findElement(By.cssSelector("[data-testid='"+ card +"']"));
 
-
+        assertEquals(result.getDomProperty("value"), title);
+    }
 
     @Then("should contain {string}")
     public void theMoreInfoShouldBeDisplayed(String card){
