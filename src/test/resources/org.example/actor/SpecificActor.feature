@@ -2,7 +2,6 @@ Feature: Specific actor page
   Background:
     Given the page "http://localhost:5173/actor/3" is loaded
 
-
   Scenario: Specific actor page contains the right information
     Then the page should contain "specific-actor-id" with the text of "ID: 3"
 #    And the page should contain "specific-actor-first-name" with the text of "A"

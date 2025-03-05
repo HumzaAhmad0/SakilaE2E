@@ -2,7 +2,6 @@ Feature: Search Actor Page
   Background:
     Given the page "http://localhost:5173/searchActors" is loaded
 
-
   Scenario: the input fields are enabled initially
     Then the "actor-search-id" field should be enabled
     And the "actor-search-name" field should be enabled
@@ -72,7 +71,6 @@ Feature: Search Actor Page
   Scenario: the user selects the go back link
     When the user selects "actor-search-go-back" link
     Then the URL should be "http://localhost:5173/actors"
-
 
 #  loading?
 #  need to add validation and check that

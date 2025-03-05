@@ -2,7 +2,6 @@ Feature: Create Actor Page
   Background:
     Given the page "http://localhost:5173/createActor" is loaded
 
-
   Scenario: Only filling out the first name field
     When the user enters "Tom" in the "actor-form-first-name" field
     And the user clicks the "actor-form-submit-button" button

@@ -1,5 +1,4 @@
 Feature: ActorListPage
-
   Background:
     Given the page "http://localhost:5173/actors" is loaded
 
