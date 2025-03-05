@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="SakilaSuit" verbose="1">
+<suite name="SakilaSuite" verbose="1">
     <test name="exampleTest">
         <classes>
 <!--            <class name="org.example.HomePageTests"/>-->

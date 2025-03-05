@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Objects;
 
 public class UpdateFilmStepDefs {
 
@@ -47,18 +46,14 @@ public class UpdateFilmStepDefs {
     public void theUserEntersMoreThanXCharactersInField(int length, String field) {
         final var driver = DriverManager.getDriver();
 
-        // Set up WebDriverWait
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement textareaField = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid='" + field + "']")));
         wait.until(ExpectedConditions.visibilityOf(textareaField));
 
-        // Scroll into view smoothly
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", textareaField);
 
-        // Generate long input value
         String longName = "A".repeat(length + 1);
 
-        // Focus the input field and enter the long value
         textareaField.click();
         textareaField.sendKeys(longName);
     }
