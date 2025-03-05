@@ -3,33 +3,51 @@ package org.example.actor;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Objects;
 
 import static org.testng.Assert.*;
 
 public class SearchActorStepDefs {
 
-//    I want to add a feature where it looks at the length of the already existing entry and then backspaces that many times
-//   maybe a for loop for that size?
+//    @When("the user deletes the value in the {string} field")
+//    public void theUserDeletesValueInField(String field) {
+//        final var driver = DriverManager.getDriver();
+//        WebElement inputField = driver.findElement(By.cssSelector("input[data-testid='" + field + "']"));
+//
+//        int inputContent = Objects.requireNonNull(inputField.getDomProperty("value")).length();
+//        inputField.click();
+//        for (int i = 0; i< inputContent; i++){
+//            inputField.sendKeys(Keys.BACK_SPACE);
+//        }
+//    }
+
     @When("the user deletes the value in the {string} field")
     public void theUserDeletesValueInField(String field) {
         final var driver = DriverManager.getDriver();
-        WebElement inputField = driver.findElement(By.cssSelector("input[data-testid='" + field + "']"));
 
-        int inputContent = Objects.requireNonNull(inputField.getDomProperty("value")).length();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement inputField = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-testid='" + field + "']")));
+        wait.until(ExpectedConditions.visibilityOf(inputField));
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", inputField);
+
         inputField.click();
-        for (int i = 0; i< inputContent; i++){
-            inputField.sendKeys(Keys.BACK_SPACE);
-        }
-//        inputField.sendKeys(Keys.BACK_SPACE);
-//        while (!inputField.getText().isEmpty()) {
+
+        inputField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        inputField.sendKeys(Keys.BACK_SPACE);
+
+//        int inputContent = Objects.requireNonNull(inputField.getDomProperty("value")).length();
+//        for (int i = 0; i < inputContent; i++) {
 //            inputField.sendKeys(Keys.BACK_SPACE);
 //        }
     }
+
+
 
     @Then("the {string} field should be disabled")
     public void theFieldShouldBeDisabled(String field) {
@@ -38,10 +56,25 @@ public class SearchActorStepDefs {
         assertFalse(fieldElement.isEnabled());
     }
 
+//    @When("the user enters {string} in the {string} field")
+//    public void theUserEntersInField(String value, String field) {
+//        final var driver = DriverManager.getDriver();
+//        WebElement inputField = driver.findElement(By.cssSelector("[data-testid='" + field + "']"));
+//        inputField.sendKeys(value);
+//    }
+
     @When("the user enters {string} in the {string} field")
     public void theUserEntersInField(String value, String field) {
         final var driver = DriverManager.getDriver();
-        WebElement inputField = driver.findElement(By.cssSelector("[data-testid='" + field + "']"));
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement inputField = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-testid='" + field + "']")));
+        wait.until(ExpectedConditions.visibilityOf(inputField));
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", inputField);
+
+        inputField.click();
+
         inputField.sendKeys(value);
     }
 
@@ -55,8 +88,28 @@ public class SearchActorStepDefs {
     @When("the user clicks the {string} button")
     public void theUserClicksTheButton(String button) {
         final var driver = DriverManager.getDriver();
-        WebElement submitButton = driver.findElement(By.cssSelector("button[data-testid='" + button + "']"));
-        submitButton.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement linkElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[data-testid='" + button + "']")));
+        wait.until(ExpectedConditions.visibilityOf(linkElement));
+
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", linkElement);
+
+        wait.until(ExpectedConditions.elementToBeClickable(linkElement));
+
+        try {
+            linkElement.click();
+        } catch (ElementClickInterceptedException e) {
+            System.out.println("Click intercepted, attempting JavaScript click...");
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", linkElement);
+        }
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

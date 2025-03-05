@@ -20,6 +20,10 @@ Feature: Specific actor page
     When the user selects "specific-actor-all-actors-link" link
     Then the URL should be "http://localhost:5173/actors"
 
+  Scenario: Update actor redirect to film from specific actor page
+    When the user selects "specific-actor-film-titles-1" link
+    Then the URL should be "http://localhost:5173/film/2"
+
 #    need to add placeholder id
 #  Scenario: Deleting an actor
 #    Given the page "http://localhost:5173/actor/NEED TO PUT PLACEHOLDER" is loaded
