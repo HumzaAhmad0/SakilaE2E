@@ -1,8 +1,8 @@
-package org.example.film;
+package film;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.example.DriverManager;
+import driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

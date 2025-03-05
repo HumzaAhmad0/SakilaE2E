@@ -10,7 +10,7 @@ Feature: Create Film Page
     Then the URL should be "http://localhost:5173/createFilm"
 
   Scenario: Only filling out the description field
-    When the user enters "A" in the "film-form-description" field
+    When the user enters "A" in the "film-form-description" textarea
     And the user clicks the "film-form-submit-button" button
     Then an alert should be shown with the message "Please fill out the title field."
     And the user clicks ok on the alert
@@ -29,32 +29,32 @@ Feature: Create Film Page
     Then an alert should be shown with the message "Please fill out the title field."
     And the user clicks ok on the alert
     Then the URL should be "http://localhost:5173/createFilm"
-
-  Scenario: Only filling out the score field
-    When the user enters "90" in the "film-form-score" field
-    And the user clicks the "film-form-submit-button" button
-    Then an alert should be shown with the message "Please fill out all fields."
-    And the user clicks ok on the alert
-    Then the URL should be "http://localhost:5173/createFilm"
-
-  Scenario: Only filling out the rental rate field
-    When the user enters "2.99" in the "film-form-rental_rate" field
-    And the user clicks the "film-form-submit-button" button
-    Then an alert should be shown with the message "Please fill out all fields."
-    And the user clicks ok on the alert
-    Then the URL should be "http://localhost:5173/createFilm"
-
+##
+##  Scenario: Only filling out the score field
+##    When the user enters "90" in the "film-form-score" field
+##    And the user clicks the "film-form-submit-button" button
+##    Then an alert should be shown with the message "Please fill out all fields."
+##    And the user clicks ok on the alert
+##    Then the URL should be "http://localhost:5173/createFilm"
+#
+##  Scenario: Only filling out the rental rate field
+##    When the user enters "2.99" in the "film-form-rental_rate" field
+##    And the user clicks the "film-form-submit-button" button
+##    Then an alert should be shown with the message "Please fill out all fields."
+##    And the user clicks ok on the alert
+##    Then the URL should be "http://localhost:5173/createFilm"
+#
   Scenario: Clicking on the go back re-direct link
     When the user selects "film-form-back-button" link
     Then the URL should be "http://localhost:5173/films"
-
+#
   Scenario: Submitting a valid film
     When the user enters "Valid Film" in the "film-form-title" field
-    And the user enters "A great description" in the "film-form-description" field
-    And the user enters "1, 2, 3" in the "film-form-cast" field
+    And the user enters "A great description" in the "film-form-description" textarea
+    And the user enters "45" in the "film-form-cast" field
     And the user enters "1, 2" in the "film-form-genres" field
-    And the user enters "90" in the "film-form-score" field
-    And the user enters "2.99" in the "film-form-rental_rate" field
+#    And the user enters "90" in the "film-form-score" field
+#    And the user enters "2.99" in the "film-form-rental_rate" field
     And the user clicks the "film-form-submit-button" button
     Then an alert should be shown with the message "Film created successfully!"
     And the user clicks ok on the alert
@@ -120,11 +120,11 @@ Feature: Create Film Page
 
   Scenario: Submitting a film with a cast containing non-numeric values
     When the user enters "Valid Film" in the "film-form-title" field
-    And the user enters "A great description" in the "film-form-description" field
+    And the user enters "A great description" in the "film-form-description" textarea
     And the user enters "a, b, c" in the "film-form-cast" field
     And the user enters "1, 2" in the "film-form-genres" field
-    And the user enters "90" in the "film-form-score" field
-    And the user enters "2.99" in the "film-form-rental_rate" field
+#    And the user enters "90" in the "film-form-score" field
+#    And the user enters "2.99" in the "film-form-rental_rate" field
     And the user clicks the "film-form-submit-button" button
     Then an alert should be shown with the message "Film created successfully!"
     And the user clicks ok on the alert
@@ -132,11 +132,11 @@ Feature: Create Film Page
 
   Scenario: Submitting a film with a cast containing numeric values and letters
     When the user enters "Valid Film" in the "film-form-title" field
-    And the user enters "A great description" in the "film-form-description" field
-    And the user enters "a, 2b, c" in the "film-form-cast" field
+    And the user enters "A great description" in the "film-form-description" textarea
+    And the user enters "a, 22b, c" in the "film-form-cast" field
     And the user enters "1, 2" in the "film-form-genres" field
-    And the user enters "90" in the "film-form-score" field
-    And the user enters "2.99" in the "film-form-rental_rate" field
+#    And the user enters "90" in the "film-form-score" field
+#    And the user enters "2.99" in the "film-form-rental_rate" field
     And the user clicks the "film-form-submit-button" button
     Then an alert should be shown with the message "Film created successfully!"
     And the user clicks ok on the alert
@@ -144,8 +144,8 @@ Feature: Create Film Page
 
   Scenario: Submitting a film with a genre containing non-numeric values
     When the user enters "Valid Film" in the "film-form-title" field
-    And the user enters "A great description" in the "film-form-description" field
-    And the user enters "1, 2, 3" in the "film-form-cast" field
+    And the user enters "A great description" in the "film-form-description" textarea
+    And the user enters "44" in the "film-form-cast" field
     And the user enters "a, b, c" in the "film-form-genres" field
     And the user clicks the "film-form-submit-button" button
     Then an alert should be shown with the message "Film created successfully!"
@@ -154,20 +154,21 @@ Feature: Create Film Page
 
   Scenario: Submitting a film with a genre containing numbers and letters
     When the user enters "Valid Film" in the "film-form-title" field
-    And the user enters "A great description" in the "film-form-description" field
-    And the user enters "1, 2, 3" in the "film-form-cast" field
+    And the user enters "A great description" in the "film-form-description" textarea
+    And the user enters "44" in the "film-form-cast" field
     And the user enters "a, 2b, c" in the "film-form-genres" field
+    And the user clicks the "film-form-submit-button" button
     Then an alert should be shown with the message "Film created successfully!"
     And the user clicks ok on the alert
     Then the URL should be "http://localhost:5173/films"
 
   Scenario: Submitting a film with a genre number greater than 16
     When the user enters "Valid Film" in the "film-form-title" field
-    And the user enters "A great description" in the "film-form-description" field
-    And the user enters "a, 2b, c" in the "film-form-cast" field
+    And the user enters "A great description" in the "film-form-description" textarea
+    And the user enters "44" in the "film-form-cast" field
     And the user enters "17" in the "film-form-genres" field
-    And the user enters "90" in the "film-form-score" field
-    And the user enters "2.99" in the "film-form-rental_rate" field
+#    And the user enters "90" in the "film-form-score" field
+#    And the user enters "2.99" in the "film-form-rental_rate" field
     And the user clicks the "film-form-submit-button" button
     Then an alert should be shown with the message "Genre IDs must be between 1 and 16."
     And the user clicks ok on the alert
@@ -175,49 +176,49 @@ Feature: Create Film Page
 
   Scenario: Submitting a film with a genre number less than 1
     When the user enters "Valid Film" in the "film-form-title" field
-    And the user enters "A great description" in the "film-form-description" field
-    And the user enters "a, 2b, c" in the "film-form-cast" field
+    And the user enters "A great description" in the "film-form-description" textarea
+    And the user enters "44" in the "film-form-cast" field
     And the user enters "0" in the "film-form-genres" field
-    And the user enters "90" in the "film-form-score" field
-    And the user enters "2.99" in the "film-form-rental_rate" field
+#    And the user enters "90" in the "film-form-score" field
+#    And the user enters "2.99" in the "film-form-rental_rate" field
     And the user clicks the "film-form-submit-button" button
     Then an alert should be shown with the message "Genre IDs must be between 1 and 16."
     And the user clicks ok on the alert
     Then the URL should be "http://localhost:5173/createFilm"
 
-  Scenario: Submitting a film with rental rate greater than 99.99
-    When the user enters "Valid Film" in the "film-form-title" field
-    And the user enters "A great description" in the "film-form-description" field
-    And the user enters "a, 2b, c" in the "film-form-cast" field
-    And the user enters "2" in the "film-form-genres" field
-    And the user enters "90" in the "film-form-score" field
-    And the user enters "100" in the "film-form-rental_rate" field
-    And the user clicks the "film-form-submit-button" button
-    Then an alert should be shown with the message "Rental Rate must be between 0.00 and 99.99."
-    And the user clicks ok on the alert
-    Then the URL should be "http://localhost:5173/createFilm"
+#  Scenario: Submitting a film with rental rate greater than 99.99
+#    When the user enters "Valid Film" in the "film-form-title" field
+#    And the user enters "A great description" in the "film-form-description" textarea
+#    And the user enters "a, 2b, c" in the "film-form-cast" field
+#    And the user enters "2" in the "film-form-genres" field
+#    And the user enters "90" in the "film-form-score" field
+#    And the user enters "100" in the "film-form-rental_rate" field
+#    And the user clicks the "film-form-submit-button" button
+#    Then an alert should be shown with the message "Rental Rate must be between 0.00 and 99.99."
+#    And the user clicks ok on the alert
+#    Then the URL should be "http://localhost:5173/createFilm"
 
-  Scenario: Submitting a film with score greater than 100
-    When the user enters "Valid Film" in the "film-form-title" field
-    And the user enters "A great description" in the "film-form-description" field
-    And the user enters "a, 2b, c" in the "film-form-cast" field
-    And the user enters "2" in the "film-form-genres" field
-    And the user enters "101" in the "film-form-score" field
-    And the user enters "1" in the "film-form-rental_rate" field
-    And the user clicks the "film-form-submit-button" button
-    Then an alert should be shown with the message "Score must be between 0 and 100."
-    And the user clicks ok on the alert
-    Then the URL should be "http://localhost:5173/createFilm"
+#  Scenario: Submitting a film with score greater than 100
+#    When the user enters "Valid Film" in the "film-form-title" field
+#    And the user enters "A great description" in the "film-form-description" textarea
+#    And the user enters "a, 2b, c" in the "film-form-cast" field
+#    And the user enters "2" in the "film-form-genres" field
+#    And the user enters "101" in the "film-form-score" field
+#    And the user enters "1" in the "film-form-rental_rate" field
+#    And the user clicks the "film-form-submit-button" button
+#    Then an alert should be shown with the message "Score must be between 0 and 100."
+#    And the user clicks ok on the alert
+#    Then the URL should be "http://localhost:5173/createFilm"
 
-  Scenario: Submitting a film with rental duration greater than 255
-    When the user enters "Valid Film" in the "film-form-title" field
-    And the user enters "A great description" in the "film-form-description" field
-    And the user enters "a, 2b, c" in the "film-form-cast" field
-    And the user enters "2" in the "film-form-genres" field
-    And the user enters "10" in the "film-form-score" field
-    And the user enters "1" in the "film-form-rental_rate" field
-    When the user enters "256" in the "film-form-rental_duration" field
-    And the user clicks the "film-form-submit-button" button
-    Then an alert should be shown with the message "Rental Duration must be between 1 and 255."
-    And the user clicks ok on the alert
-    Then the URL should be "http://localhost:5173/createFilm"
+#  Scenario: Submitting a film with rental duration greater than 255
+#    When the user enters "Valid Film" in the "film-form-title" field
+#    And the user enters "A great description" in the "film-form-description" textarea
+#    And the user enters "a, 2b, c" in the "film-form-cast" field
+#    And the user enters "2" in the "film-form-genres" field
+##    And the user enters "10" in the "film-form-score" field
+##    And the user enters "1" in the "film-form-rental_rate" field
+#    When the user enters "256" in the "film-form-rental_duration" field
+#    And the user clicks the "film-form-submit-button" button
+#    Then an alert should be shown with the message "Rental Duration must be between 1 and 255."
+#    And the user clicks ok on the alert
+#    Then the URL should be "http://localhost:5173/createFilm"

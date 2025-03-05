@@ -2,8 +2,8 @@
 <suite name="SakilaSuite" verbose="1">
     <test name="exampleTest">
         <classes>
-<!--            <class name="org.example.HomePageTests"/>-->
-            <class name="org.example.RunCucumberTests"/>
+<!--            <class name="HomePageTests"/>-->
+            <class name="RunCucumberTests"/>
         </classes>
     </test>
 </suite>

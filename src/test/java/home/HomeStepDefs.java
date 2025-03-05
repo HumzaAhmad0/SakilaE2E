@@ -1,8 +1,8 @@
-package org.example.home;
+package home;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.example.DriverManager;
+import driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

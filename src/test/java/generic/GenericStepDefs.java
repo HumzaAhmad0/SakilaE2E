@@ -1,5 +1,6 @@
-package org.example;
+package generic;
 
+import driver.DriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -40,13 +41,13 @@ public class GenericStepDefs {
 //
 //    @When("(the user) selects {string} link")
 //    public void theLinkIsSelected(String link){
-//        final var driver = DriverManager.getDriver();
+//        final var driver = driver.DriverManager.getDriver();
 //        driver.findElement(By.cssSelector("a[data-testid='"+ link +"']")).click();
 //    }
 
 //    @When("(the user) selects {string} link")
 //    public void theLinkIsSelected(String link) {
-//        final var driver = DriverManager.getDriver();
+//        final var driver = driver.DriverManager.getDriver();
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //        WebElement linkElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='" + link + "']")));
 //        linkElement.click();

@@ -1,7 +1,7 @@
-package org.example.film;
+package film;
 
 import io.cucumber.java.en.When;
-import org.example.DriverManager;
+import driver.DriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;

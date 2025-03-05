@@ -1,7 +1,7 @@
-package org.example.film;
+package film;
 
+import driver.DriverManager;
 import io.cucumber.java.en.Then;
-import org.example.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

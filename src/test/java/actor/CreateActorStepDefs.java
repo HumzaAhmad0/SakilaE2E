@@ -1,7 +1,7 @@
-package org.example.actor;
+package actor;
 
 import io.cucumber.java.en.When;
-import org.example.DriverManager;
+import driver.DriverManager;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;

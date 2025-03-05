@@ -1,4 +1,4 @@
-package org.example.actor;
+package actor;
 
 public class ActorStepDefs {
 }

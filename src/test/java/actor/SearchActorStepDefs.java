@@ -1,14 +1,13 @@
-package org.example.actor;
+package actor;
 
+import driver.DriverManager;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.example.DriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Objects;
 
 import static org.testng.Assert.*;
 
@@ -16,7 +15,7 @@ public class SearchActorStepDefs {
 
 //    @When("the user deletes the value in the {string} field")
 //    public void theUserDeletesValueInField(String field) {
-//        final var driver = DriverManager.getDriver();
+//        final var driver = driver.DriverManager.getDriver();
 //        WebElement inputField = driver.findElement(By.cssSelector("input[data-testid='" + field + "']"));
 //
 //        int inputContent = Objects.requireNonNull(inputField.getDomProperty("value")).length();
@@ -58,7 +57,7 @@ public class SearchActorStepDefs {
 
 //    @When("the user enters {string} in the {string} field")
 //    public void theUserEntersInField(String value, String field) {
-//        final var driver = DriverManager.getDriver();
+//        final var driver = driver.DriverManager.getDriver();
 //        WebElement inputField = driver.findElement(By.cssSelector("[data-testid='" + field + "']"));
 //        inputField.sendKeys(value);
 //    }
@@ -67,8 +66,8 @@ public class SearchActorStepDefs {
     public void theUserEntersInField(String value, String field) {
         final var driver = DriverManager.getDriver();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        WebElement inputField = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[data-testid='" + field + "']")));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement inputField = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-testid='" + field + "']")));
         wait.until(ExpectedConditions.visibilityOf(inputField));
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", inputField);
