@@ -1,4 +1,4 @@
-Feature: Create Film Page
+Feature: Create Actor Page
 
   Scenario: Only filling out the first name field
     Given the page "http://localhost:5173/createActor" is loaded

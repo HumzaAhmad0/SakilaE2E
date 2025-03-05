@@ -4,10 +4,8 @@ import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.testng.Assert;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -39,14 +37,52 @@ public class GenericStepDefs {
         assert actualURL != null;
         Assert.assertEquals(url, actualURL);
     }
+//
+//    @When("(the user) selects {string} link")
+//    public void theLinkIsSelected(String link){
+//        final var driver = DriverManager.getDriver();
+//        driver.findElement(By.cssSelector("a[data-testid='"+ link +"']")).click();
+//    }
+
+//    @When("(the user) selects {string} link")
+//    public void theLinkIsSelected(String link) {
+//        final var driver = DriverManager.getDriver();
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement linkElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='" + link + "']")));
+//        linkElement.click();
+//    }
 
     @When("(the user) selects {string} link")
-    public void theLinkIsSelected(String link){
+    public void theLinkIsSelected(String link) {
         final var driver = DriverManager.getDriver();
-        driver.findElement(By.cssSelector("a[data-testid='"+ link +"']")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        WebElement linkElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a[data-testid='" + link + "']")));
+
+        wait.until(ExpectedConditions.visibilityOf(linkElement));
+
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", linkElement);
+
+        wait.until(ExpectedConditions.elementToBeClickable(linkElement));
+
+        try {
+            linkElement.click();
+        } catch (ElementClickInterceptedException e) {
+            System.out.println("Click intercepted, attempting JavaScript click...");
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", linkElement);
+        }
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-//    for title or name on film and actor lists
+
+
     @Then("the page should contain {string} with the text of {string}")
     public void theSpecificTextShouldBeDisplayed(String card, String title){
         final var driver = DriverManager.getDriver();

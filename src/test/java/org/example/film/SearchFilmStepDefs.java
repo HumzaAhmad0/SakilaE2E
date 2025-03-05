@@ -18,7 +18,8 @@ public class SearchFilmStepDefs {
         final WebDriver driver = DriverManager.getDriver();
         WebElement dropdown = driver.findElement(By.cssSelector("select[data-testid='" + field + "']"));
         Select select = new Select(dropdown);
-        select.selectByVisibleText(value);
+//        select.selectByVisibleText(value);
+        select.selectByValue(value);
     }
 
     @Then("the {string} dropdown should be enabled")

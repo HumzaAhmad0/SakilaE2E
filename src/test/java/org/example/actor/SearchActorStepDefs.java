@@ -41,7 +41,7 @@ public class SearchActorStepDefs {
     @When("the user enters {string} in the {string} field")
     public void theUserEntersInField(String value, String field) {
         final var driver = DriverManager.getDriver();
-        WebElement inputField = driver.findElement(By.cssSelector("input[data-testid='" + field + "']"));
+        WebElement inputField = driver.findElement(By.cssSelector("[data-testid='" + field + "']"));
         inputField.sendKeys(value);
     }
 
